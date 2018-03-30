@@ -6,14 +6,16 @@ import java.io.*;
  * Create a class for Movie System.
  * 
  * @author Jyh-woei Yang 
- * @version 25/05/2017
+ * @version 30/03/2018
  */
 public class MovieSystem
 {
-    // instance variables - replace the example below with your own
+    // instance variables 
     private ArrayList<User> userList;
     private MovieDatabase newMovieList;
     private User loginUser;
+    private ArrayList<Ticket> ticketList;
+    private ArrayList<MovieSession> movieSessionList;
     
     /**
      * Default Constructor for objects of class Movie System
@@ -576,6 +578,41 @@ public class MovieSystem
             System.out.println("Unexpected I/O error occured");
         }
     }
+
+    /**
+     * A method to read movieSession from file
+     * 
+     * @param  
+     * @return
+     * @throws FileNotFoundException if file is not found
+     * @throws IOException while exception during I/O actions
+     */
+    public void loadMovieSessionFile(){
+        
+        String fileName = "myMovieSessions.txt";
+        try{
+            
+            FileReader inputFile = new FileReader(fileName);
+            Scanner console = new Scanner(inputFile);
+            while(console.hasNextLine()){
+                String movieSessionString = console.nextLine();
+                String[] details = movieSessionString.split(",");
+                MovieSession movieSession = new MovieSession(details[0],details[1],details[2],details[3],details[4]);
+                //display test data
+                System.out.println("= test data =");
+                movieSession.display();
+                movieSessionList.add(movieSession);
+            }
+            inputFile.close();
+        }
+        catch(FileNotFoundException exception)
+        {
+            System.out.println(fileName + " not found");
+        }
+        catch(IOException e){
+            System.out.println("Error: Invalid file");
+        }
+    }
     
     /**
      * A method to read user from file
@@ -761,6 +798,12 @@ public class MovieSystem
         //loadUserFile()
         userList = new ArrayList<User>();
         loadUserFile();
+        
+        //loadTicketFile()
+        //ticketList = new ArrayList<Ticket>();
+        
+        movieSessionList = new ArrayList<MovieSession>();
+        loadMovieSessionFile();
         
         System.out.println(userList.get(0).getUserName());
         System.out.println(userList.get(0).getPassword());

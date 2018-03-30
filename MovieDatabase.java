@@ -5,12 +5,14 @@ import java.io.*;
  * Write a description of class MovieDatabase here.
  * 
  * @author Jyhwoei Yang 
- * @version 25/05/2017
+ * @version 30/03/2018
  */
 public class MovieDatabase
 {    
+    // instance variables 
     private ArrayList<Movie> movieList; // should be private
     private ArrayList<User> userList;
+    private ArrayList<Ticket> ticketList;
     
     /** Default Constructor of Class MovieDatabase
      * 
@@ -20,6 +22,18 @@ public class MovieDatabase
         //initialise the variables
         movieList = new ArrayList<Movie>();
         userList = new ArrayList<User>();
+        ticketList = new ArrayList<Ticket>();
+    }
+    
+    /** Constructor of Class MovieDatabase
+     * 
+     */
+    public MovieDatabase(ArrayList<Movie> movieList, ArrayList<User> userList, ArrayList<Ticket> ticketList)
+    {
+        //initialise the variables
+        this.movieList = movieList;
+        this.userList = userList;
+        this.ticketList = ticketList;
     }
     
     /**
