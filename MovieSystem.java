@@ -6,7 +6,7 @@ import java.io.*;
  * Create a class for Movie System.
  * 
  * @author Jyh-woei Yang 
- * @version 30/03/2018
+ * @version 01/04/2018
  */
 public class MovieSystem
 {
@@ -15,6 +15,8 @@ public class MovieSystem
     private MovieDatabase newMovieList;
     private User loginUser;
     private ArrayList<Ticket> ticketList;
+    private ArrayList<MovieSession> bookedTicketList;
+    private ArrayList<MovieSession> availableTicketList;
     private ArrayList<MovieSession> movieSessionList;
     
     /**
@@ -332,7 +334,8 @@ public class MovieSystem
         
         System.out.println("(5) Search available seats via a movie");
         System.out.println("(6) Search available seats via a cineplex");
-        System.out.println("(7) Exit");//isCreditcard (y/n)
+        System.out.println("(7) Pay by Creditcard");//isCreditcard (y/n)
+        System.out.println("(8) Exit");
         System.out.println("=====================");
         System.out.print("Choose an option :");
     }
@@ -804,6 +807,12 @@ public class MovieSystem
         
         movieSessionList = new ArrayList<MovieSession>();
         loadMovieSessionFile();
+
+        availableTicketList = new ArrayList<MovieSession>();
+        //loadAvailableTicketFile()
+        
+        bookedTicketList = new ArrayList<MovieSession>();
+        //loadBookedTicketFile()
         
         System.out.println(userList.get(0).getUserName());
         System.out.println(userList.get(0).getPassword());
@@ -827,9 +836,6 @@ public class MovieSystem
             //display booking and display menu 
             displayBookingAndDeleteMenu();
             
-            //display menu 
-            displayMenu();
-            
             //insert case
             String iobuffer = input.nextLine(); 
             System.out.println("");
@@ -839,31 +845,51 @@ public class MovieSystem
             { 
                 char option = iobuffer.charAt(0);
 
-                //if option not in 1,2,3,4,5 Error message: please insert from (1) to (5)!
+                //if option not in 1,2,3,4,5,6,7,8 Error message: please insert from (1) to (8)!
                 if (validOption(option))
                 {
                     switch (option)
                     {
                         case '1':
-                        searchCase();
+                        //searchCase();
+                        //(1) Book ticket for a movie session
+                        System.out.println("(1) Book ticket for a movie session");
+                        //BookedTicketList.add();
+                        //AvailableTicketList.remove();
                         break;
                         case '2':
-                        //add Movie to the list
-                        addMovie();
+                        //(2) Delete ticket for a movie session
+                        System.out.println("(2) Delete ticket for a movie session");
+                        //BookticketList.remove()
+                        //AvailableTicketList.add();
                         break;
                         case '3':
-                        //delete Movie from the list
-                        deleteMovie();
+                        //(3) Display a list of cineplex theatres
+                        System.out.println("(3) Display a list of cineplex theatres");
+                        //Ticket.displayCineplex();
                         break;
                         case '4':
-                        //display Favourate Movie
-                        displayFavourateMovie();    
+                        //(4) Display the corresponding movie session for the whole week
+                        System.out.println("(4) Display the corresponding movie session for the whole week");    
+                        //MovieSession.displayWeek();
                         break;
                         case '5':
-                        //Edit Movie from the list (Actors and Rating) (HD)
-                        editMovie();
+                        //(5) Search available seats via a movie
+                        System.out.println("(5) Search available seats via a movie");
+                        //MovieSystem.searchSeat(MovieName);
                         break;
                         case '6':
+                        //(6) Search available seats via a cineplex
+                        System.out.println("(6) Search available seats via a cineplex");
+                        //MovieSystem.searchSeat(cineplexName);
+                        break;
+                        case '7':
+                        //(7) Pay by Creditcard
+                        System.out.println("(7) Pay by Creditcard");
+                        //MovieSystem.PayCredit();
+                        break;
+                        
+                        case '8':
                         //Exit system, and reset variables
                         isOperating = exitSystem();
                         break;
@@ -962,7 +988,7 @@ public class MovieSystem
             //if iobuffer isEmpty or iobuffer.length() > 1 , Error : please insert from (1) to (5)! and return false to break if condition
             if (iobuffer.isEmpty() || iobuffer.length() > 1)
             {
-                System.out.println("Error : please insert from (1) to (6)!");
+                System.out.println("Error : please insert from (1) to (8)!");
                 return false;
             }
             return true;
@@ -1023,10 +1049,10 @@ public class MovieSystem
      */
     private boolean validOption(char option) //method to check char option
     {
-        //check if option is in 1,2,3,4,5,6 , and return false to break if condition , 6 for (HD)
-        if (option < '1' || option > '6')
+        //check if option is in 1,2,3,4,5,6,7,8 , and return false to break if condition
+        if (option < '1' || option > '8')
         {
-            System.out.println("Error : please insert from (1) to (6)!");
+            System.out.println("Error : please insert from (1) to (8)!");
             return false;
         }
         return true;        
