@@ -605,6 +605,8 @@ public class MovieSystem
                 System.out.println("= test data =");
                 movieSession.display();
                 movieSessionList.add(movieSession);
+                createAvailableTicketlist(20,movieSession);
+                createBookedTicketlist(20);
             }
             inputFile.close();
         }
@@ -615,6 +617,19 @@ public class MovieSystem
         catch(IOException e){
             System.out.println("Error: Invalid file");
         }
+    }
+    
+    public void createAvailableTicketlist(int ticketAmount, MovieSession movieSession)
+    {
+        for (int i = 0 ; i < ticketAmount ; i++)
+        {
+            newMovieList.addAvailableTicket(movieSession);
+        }
+    }
+    
+    public void createBookedTicketlist(int ticketAmount)
+    {
+        System.out.println(ticketAmount + " ticket list has been created!");
     }
     
     /**
@@ -854,8 +869,13 @@ public class MovieSystem
                         //searchCase();
                         //(1) Book ticket for a movie session
                         System.out.println("(1) Book ticket for a movie session");
+                        
+                        //newMovieList.addBookedTicket(movieSessionList.get(i));
+                        //newMovieList.deleteAvailableTicket();//AvailableTicketList.remove();
+
                         //BookedTicketList.add();
                         //AvailableTicketList.remove();
+
                         break;
                         case '2':
                         //(2) Delete ticket for a movie session
