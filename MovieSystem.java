@@ -870,9 +870,12 @@ public class MovieSystem
                         //(1) Book ticket for a movie session
                         System.out.println("(1) Book ticket for a movie session");
                         
-                        
                         //newMovieList.addBookedTicket(movieSessionList.get(i));
                         //newMovieList.deleteAvailableTicket();//AvailableTicketList.remove();
+
+                        //BookedTicketList.add();
+                        //AvailableTicketList.remove();
+
                         break;
                         case '2':
                         //(2) Delete ticket for a movie session
