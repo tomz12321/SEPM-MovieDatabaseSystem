@@ -13,6 +13,9 @@ public class MovieDatabase
     private ArrayList<Movie> movieList; // should be private
     private ArrayList<User> userList;
     private ArrayList<Ticket> ticketList;
+    private ArrayList<MovieSession> bookedTicketList;
+    private ArrayList<MovieSession> availableTicketList;
+    private ArrayList<MovieSession> movieSessionList;
     
     /** Default Constructor of Class MovieDatabase
      * 
@@ -23,18 +26,46 @@ public class MovieDatabase
         movieList = new ArrayList<Movie>();
         userList = new ArrayList<User>();
         ticketList = new ArrayList<Ticket>();
+        bookedTicketList = new ArrayList<MovieSession>();
+        availableTicketList = new ArrayList<MovieSession>();
+        movieSessionList = new ArrayList<MovieSession>();
     }
     
     /** Constructor of Class MovieDatabase
      * 
      */
-    public MovieDatabase(ArrayList<Movie> movieList, ArrayList<User> userList, ArrayList<Ticket> ticketList)
+    public MovieDatabase(ArrayList<Movie> movieList, ArrayList<User> userList, ArrayList<Ticket> ticketList, ArrayList<MovieSession> bookedTicketList, ArrayList<MovieSession> availableTicketList, ArrayList<MovieSession> movieSessionList)
     {
         //initialise the variables
         this.movieList = movieList;
         this.userList = userList;
         this.ticketList = ticketList;
+        this.bookedTicketList = bookedTicketList;
+        this.availableTicketList = availableTicketList;
+        this.movieSessionList = movieSessionList;
     }
+    
+    /**
+     * A method to add availableTicket to the availableTicketList
+     * 
+     * @param MovieSession the MovieSession Object
+     * @return 
+     */
+    public void addAvailableTicket(MovieSession newMovieSession)
+    {
+        availableTicketList.add(newMovieSession);
+    } 
+    
+    /**
+     * A method to add bookedTicket to the bookedTicketList
+     * 
+     * @param MovieSession the MovieSession Object
+     * @return 
+     */
+    public void addBookedTicket(MovieSession newMovieSession)
+    {
+        bookedTicketList.add(newMovieSession);
+    } 
     
     /**
      * A method to add Movie to the list
@@ -46,6 +77,50 @@ public class MovieDatabase
     {
         movieList.add(newMovie);
     } 
+  
+    /**
+     * A method to delete availableTicket from the list
+     * 
+     * @param
+     * @return 
+     */
+    public void deleteAvailableTicket(int index)
+    {        
+        //remove()
+        boolean isDeleted = false;
+        
+        availableTicketList.get(index).display(); 
+        System.out.println(" are deleted from the available ticket list.");
+        availableTicketList.remove(index);
+        isDeleted = true;                
+      
+        if (! isDeleted)
+        {
+            System.out.println(" No matched movies are deleted."); 
+        }
+    }
+
+    /**
+     * A method to delete bookedTicket from the list
+     * 
+     * @param
+     * @return 
+     */
+    public void deleteBookedTicket(int index)
+    {        
+        //remove()
+        boolean isDeleted = false;
+
+        bookedTicketList.get(index).display();
+        System.out.println(" are deleted from the available ticket list.");
+        bookedTicketList.remove(index);
+        isDeleted = true;                
+      
+        if (! isDeleted)
+        {
+            System.out.println(" No matched movies are deleted."); 
+        }
+    }
     
     /**
      * A method to delete Movie to the list
