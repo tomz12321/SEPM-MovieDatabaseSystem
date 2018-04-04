@@ -6,24 +6,38 @@ all he/she needs to know. The comments should usually include at least:
 
 PROJECT TITLE: SEPM - Movie database system
 PURPOSE OF PROJECT: 
-VERSION or DATE: 30/03/2018
+VERSION or DATE: 02/04/2018
 HOW TO START THIS PROJECT:
-(Examples) 
+
 01/05/2017 Object design, 
 09/05/2017 System logic, 
 16/05/2017 Method are sliced out
 17/05/2017 Refine after consultation (Controller and View)
 23/05/2017 Validation methods for input Strings 
 25/05/2017 Final code review
+30/03/2018 Reopen the project due to SEPM assignment1
+30/03/2018 Ticket design and implement the login function
+30/03/2018 Add-movie-session-database
+01/04/2018 Design-menu
+02/04/2018 create-2-ticket-lists
+
 
 AUTHORS: Jyhwoei Yang (Tom)
 USER INSTRUCTIONS:
-(Examples)
-New a MovieSystem object from the class MovieSystem, then use the method: start() to operate the system.
-Step 1) System will load in database from the file myvideo.txt
-Step 2) Press 1 to search movie from the list
-Step 3) Press 2 or 3 to add/delete movie into the list.
-Step 3) Press 4 to input a rating, the system will display the list of movies which rating is higher than you input..
-Step 5) Press 5 to edit the actors and rating of the movie you choose. (HD version)
-Step 6) Press 5 to exit the game
+
+New a MovieSystem object from the class MovieSystem, then use the method: loginMenu() to operate the system.
+Step 1) System will load in movie database from the file myvideo.txt
+Step 2) System will load in user database from the file myClerks.txt
+Step 3) System will load in movie-session database from the file myTickets.txt
+Step 3.1) Insert Username and Password to login the system.
+Step 3.1.1) If login successfully, display main menu.
+Step 3.1.2) If login unsuccessfully, exit the system.
+Step 4) Press 1 to Book ticket for a movie session
+Step 5) Press 2 to Delete ticket for a movie session
+Step 6) Press 3 to Display a list of cineplex theatres
+Step 7) Press 4 to Display the corresponding movie session for the whole week
+Step 8) Press 5 to Search available seats via a movie
+Step 6) Press 6 to Search available seats via a cineplex
+Step 7) Press 7 to Pay by Creditcard
+Step 8) Press 8 to Exit
 
