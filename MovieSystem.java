@@ -37,104 +37,7 @@ public class MovieSystem
      */
     private void addMovie()
     {
-        //input
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("=== Add Movie ===");
-        System.out.println("Please insert movie name :");        
-        String newMovieName = input.nextLine();
-
-        //valid addMovieName if existed , Error message
-        while (validMovieName(newMovieName))
-            newMovieName = input.nextLine();                  
-
-        //valid addMovie if blank , Error message    
-        while (validBlank(newMovieName,"Movie Name"))
-        {
-            newMovieName = input.nextLine();
-            //valid addMovieName if existed , Error message
-            while (validMovieName(newMovieName))
-                newMovieName = input.nextLine(); 
-        }        
-        System.out.println("Please insert director name :");
-
-        //input Director's name
-        String newDirectorName = input.nextLine();
-
-        while (validBlank(newDirectorName,"Director Name"))
-            newDirectorName = input.nextLine();
-
-        System.out.println("Please insert actor1 name :");
-
-        //input Actor1's name
-        String newActor1Name = input.nextLine();
-
-        while (validBlank(newActor1Name,"Actor1 Name"))
-            newActor1Name = input.nextLine();
-
-        System.out.println("Please insert actor2 name :");
-        //input Actor2's name
-        String newActor2Name = input.nextLine();
-
-        while (validSpace(newActor2Name))
-            newActor2Name = input.nextLine();
-
-        System.out.println("Please insert actor3 name :");
-        //input Actor3's name
-        String newActor3Name = input.nextLine();
-
-        while (validSpace(newActor3Name))
-            newActor3Name = input.nextLine();
-
-        System.out.println("Please insert rating :");
-        //input
-        String newRating = input.nextLine();
-
-        while (validBlank(newRating,"new Rating"))
-            newRating = input.nextLine();
-
-        //Convert String newRating to int newRatingInt
-        int newRatingInt = convertStringtoInt(newRating);
-
-        //validRating(int rating)
-        while (validRating(newRatingInt))
-        { 
-            newRating = input.nextLine();
-
-            while (validBlank(newRating,"new Rating"))
-                newRating = input.nextLine();
-
-            newRatingInt = convertStringtoInt(newRating);
-        }
         
-        //add movie to the list
-        Movie newMovie = new Movie(); 
-        newMovie.setTitle(newMovieName);
-        newMovie.setDirector(newDirectorName);
-        String[] elements = new String[ newMovie.getNumbersOfElements() - 3 ];
-        ListOfActors newActorList = new ListOfActors();
-        elements[0] = newActor1Name;
-        elements[1] = newActor2Name;
-        elements[2] = newActor3Name;
-        
-        //actor list , using for loop to handle it
-        //use movie.getNumbersOfElement() to replace 6, 6 - 3 + 2 = 5 
-        for (int i = 2 ; i < ( newMovie.getNumbersOfElements() - 3 ) + 2 ; i++ )
-        {
-            Actors newActor = new Actors();
-            
-            newActor.setName(elements[ i - 2 ]);
-            newActorList.addActor(newActor);
-        }
-        
-        newMovie.setActorList(newActorList.getListOfActors());
-        newMovie.setRating(newRatingInt);
-        
-        //outprint to testing
-        newMovie.displayMovieRecord();
-
-        //add to Movie List
-        newMovieList.addMovie(newMovie);
     }
 
     /**
@@ -175,71 +78,7 @@ public class MovieSystem
      */
     private void deleteMovie()
     {
-        System.out.println("Delete Movie :");        
-        //input
-        Scanner input = new Scanner(System.in);
-
-        //search by title
-        System.out.println("=== Search Movie to delete : ===");
-        System.out.println("Search Movie , please insert keyword of title:");
-
-        String delKeyword = input.nextLine().toLowerCase();
-
-        while (validBlank(delKeyword,"Title keyword"))
-            delKeyword = input.nextLine().toLowerCase();
-
-        ArrayList<Movie> delResultList = newMovieList.searchMovie(delKeyword);
-
-        //display Movie details
-        System.out.println("Search Result");
-        for (int j = 0 ; j < delResultList.size() ; j++)
-        {
-            System.out.print( (j + 1) + ") ");
-            delResultList.get(j).displayMovieRecord();
-        }
-
-        int size = delResultList.size();
-
-        //selection
-        if (size != 0)
-        {
-            System.out.println("Please insert which option number you would select to delete, press 0 to quit :");
-            String delMovieSelection = input.nextLine();
-            int index = convertStringtoInt(delMovieSelection);
-
-            if (index == 0)
-                size = 0;
-            //validDelSelection (index, delresultList.size());
-            while (validDelSelection (index, size))
-            {
-
-                delMovieSelection = input.nextLine();
-                index = convertStringtoInt(delMovieSelection);
-                if (index == 0)
-                    size = 0;
-                while (validBlank(delMovieSelection,"Selection"))
-                {    
-                    delMovieSelection = input.nextLine();
-                    index = convertStringtoInt(delMovieSelection);
-                    if (index == 0)
-                        size = 0;
-                }
-            }
-            System.out.println(delMovieSelection);
-
-            String delMovieName;
-
-            if (size != 0)
-                delMovieName = delResultList.get(index -1).getTitle();
-            else
-                delMovieName = "";
-
-            //System.out.println("Delete Movie , please insert delete title:");
-            //String delMovieName = input.nextLine();
-            newMovieList.deleteMovie(delMovieName);
-        }
-        else
-            System.out.println("No matched movies");
+        
     }
 
     /**
@@ -255,42 +94,7 @@ public class MovieSystem
      */
     private void displayFavourateMovie()
     {
-        System.out.println("Display Favourite Movie");
 
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("Please insert rating :");
-        //input
-        String newRating = input.nextLine();
-
-        while (validBlank(newRating,"new Rating"))
-            newRating = input.nextLine();
-
-        //Convert String newRating to int newRatingInt
-        int newRatingInt = convertStringtoInt(newRating);
-
-        //validRating(int rating)
-        while (validRating(newRatingInt))
-        { 
-            newRating = input.nextLine();
-
-            while (validBlank(newRating,"new Rating"))
-                newRating = input.nextLine();
-
-            newRatingInt = convertStringtoInt(newRating);
-        }
-
-        //display above newRatingInt
-        for (int i = 0 ; i < newMovieList.getNumbersOfMovies(); i++)
-        {
-            if (newMovieList.getMovieList().get(i).getRating() >= newRatingInt)
-            {
-                if (i != newMovieList.getNumbersOfMovies() - 1)
-                    System.out.print(newMovieList.getMovieList().get(i).getTitle() + ",");
-                else
-                    System.out.println(newMovieList.getMovieList().get(i).getTitle());
-            }
-        }
     }
 
     /**
@@ -350,132 +154,7 @@ public class MovieSystem
      */
     private void editMovie()
     {
-        System.out.println("Edit Movie :");        
-        //input
-        Scanner input = new Scanner(System.in);
-
-        //search by title
-        System.out.println("=== Search Movie to edit : ===");
-        System.out.println("Search Movie , please insert keyword of title:");
-
-        String editKeyword = input.nextLine().toLowerCase();
-
-        while (validBlank(editKeyword,"Title keyword"))
-            editKeyword = input.nextLine().toLowerCase();
-
-        ArrayList<Movie> editResultList = newMovieList.searchMovie(editKeyword);
-
-        //display Movie details
-        System.out.println("Search Result");
-        for (int j = 0 ; j < editResultList.size() ; j++)
-        {
-            System.out.print( (j + 1) + ") ");
-            editResultList.get(j).displayMovieRecord();
-        }
-
-        int size = editResultList.size();
-
-        //selection
-        if (size != 0)
-        {
-            System.out.println("Please insert which option number you would select to delete, press 0 to quit :");
-            String editMovieSelection = input.nextLine();
-            int index = convertStringtoInt(editMovieSelection);
-
-            if (index == 0)
-                size = 0;
-            //validDelSelection (index, delresultList.size());
-            while (validDelSelection (index, size))
-            {
-
-                editMovieSelection = input.nextLine();
-                index = convertStringtoInt(editMovieSelection);
-                if (index == 0)
-                    size = 0;
-                while (validBlank(editMovieSelection,"Selection"))
-                {    
-                    editMovieSelection = input.nextLine();
-                    index = convertStringtoInt(editMovieSelection);
-                    if (index == 0)
-                        size = 0;
-                }
-            }
-            System.out.println(editMovieSelection);
-
-            String editMovieName;
-
-            if (size != 0)
-                editMovieName = editResultList.get(index - 1).getTitle();
-            else
-                editMovieName = "";
-
-            if (size !=0)
-            {
-                System.out.println("==== Edit Movie ====");
-
-                System.out.println("Please insert actor1 name :");        
-                //input Actor1's name
-                String newActor1Name = input.nextLine();
-
-                while (validBlank(newActor1Name,"Actor1 Name"))
-                    newActor1Name = input.nextLine();
-
-                System.out.println("Please insert actor2 name :");    
-                //input Actor2's name
-                String newActor2Name = input.nextLine();
-
-                while (validSpace(newActor2Name))
-                    newActor2Name = input.nextLine();
-
-                System.out.println("Please insert actor3 name :");
-                //input Actor3's name
-                String newActor3Name = input.nextLine();
-
-                while (validSpace(newActor3Name))
-                    newActor3Name = input.nextLine();
-
-                System.out.println("Please insert rating :");
-                //input
-                String newRating = input.nextLine();
-
-                while (validBlank(newRating,"new Rating"))
-                    newRating = input.nextLine();
-
-                //Convert String newRating to int newRatingInt
-                int newRatingInt = convertStringtoInt(newRating);
-
-                //validRating(int rating)
-                while (validRating(newRatingInt))
-                { 
-                    newRating = input.nextLine();
-
-                    while(validBlank(newRating,"new Rating"))
-                        newRating = input.nextLine();
-
-                    newRatingInt = convertStringtoInt(newRating);
-                }
-
-                ArrayList<String> editActorStringList = new ArrayList<String>();
-                editActorStringList.add(newActor1Name);
-                editActorStringList.add(newActor2Name);
-                editActorStringList.add(newActor3Name);
-                
-                ArrayList<Actors> editActorList = new ArrayList<Actors>();
-                //using for loop to handle it
-                for (int i = 0 ; i < editActorStringList.size(); i++)
-                {
-                    Actors actor = new Actors();
-                    actor.setName(editActorStringList.get(i)); 
-                    editActorList.add(actor);
-                }
-                    int editRating = newRatingInt;
-                    //String editMovieName = input.nextLine();
-                    newMovieList.editMovie(editMovieName,editActorList,editRating);
-               
-            }
-        }
-        else
-            System.out.println("No matched movies");
+        
     }
 
     /**
@@ -488,7 +167,7 @@ public class MovieSystem
     {
         System.out.println("Exit System");
         //write into file
-        writeFile();
+        //writeFile();
 
         //reset all the attributes
         newMovieList = new MovieDatabase();
@@ -870,12 +549,9 @@ public class MovieSystem
                         //(1) Book ticket for a movie session
                         System.out.println("(1) Book ticket for a movie session");
                         
+                        
                         //newMovieList.addBookedTicket(movieSessionList.get(i));
                         //newMovieList.deleteAvailableTicket();//AvailableTicketList.remove();
-
-                        //BookedTicketList.add();
-                        //AvailableTicketList.remove();
-
                         break;
                         case '2':
                         //(2) Delete ticket for a movie session
@@ -923,75 +599,6 @@ public class MovieSystem
                     System.out.println("");
                     System.out.println("Thank you for using jMoSS (Java-Based Movie Search System), Goodbye!");
                 }
-    }
-    
-    /**
-     * A method to start operating the system
-     * 
-     * @param
-     * @return 
-     */
-    public void start()
-    {
-        //Scanner
-        Scanner input = new Scanner(System.in);
-        Boolean isOperating = true;
-
-        //read from file
-        readFile();
-
-        while (isOperating)
-        {                        
-            //display menu 
-            displayMenu();
-
-            //insert case
-            String iobuffer = input.nextLine(); 
-            System.out.println("");
-
-            //check console.nextLine() is not null or blank
-            if (validBlank(iobuffer,"Option"))
-            { 
-                char option = iobuffer.charAt(0);
-
-                //if option not in 1,2,3,4,5 Error message: please insert from (1) to (5)!
-                if (validOption(option))
-                {
-                    switch (option)
-                    {
-                        case '1':
-                        searchCase();
-                        break;
-                        case '2':
-                        //add Movie to the list
-                        addMovie();
-                        break;
-                        case '3':
-                        //delete Movie from the list
-                        deleteMovie();
-                        break;
-                        case '4':
-                        //display Favourate Movie
-                        displayFavourateMovie();    
-                        break;
-                        case '5':
-                        //Edit Movie from the list (Actors and Rating) (HD)
-                        editMovie();
-                        break;
-                        case '6':
-                        //Exit system, and reset variables
-                        isOperating = exitSystem();
-                        break;
-                    }
-                }
-
-                if (!isOperating)
-                {
-                    System.out.println("");
-                    System.out.println("Thank you for using Movie Database System, Goodbye!");
-                }
-            }
-        }
     }
 
     /**
