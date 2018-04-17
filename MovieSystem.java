@@ -520,8 +520,23 @@ public class MovieSystem
         System.out.println(" Please insert your password");
         String password = input.nextLine();
         
+        loginUser.setUserName(username);
+        loginUser.setPassword(password);
+        //Tom
+        loginUser.setName(userList.get(0).getName());
+        loginUser.display();
+        
+        System.out.println();
         //matchUsernameAndPassword()
         isOperating = matchUsernameAndPassword(userList, username, password);
+        
+        ticketList = new ArrayList<Ticket>();
+        //create a ticket list to sell
+        for (int i = 0; i < 20; i++)
+        {
+            Ticket newTicket = new Ticket(loginUser.getName(), loginUser.getUserName(), loginUser.getPassword(),String.valueOf((i+1)),"","");
+            newTicket.display();
+        }
         
         while (isOperating)
         {
