@@ -5,7 +5,7 @@ import java.io.*;
  * Write a description of class MovieDatabase here.
  * 
  * @author Jyhwoei Yang 
- * @version 30/03/2018
+ * @version 17/04/2018
  */
 public class MovieDatabase
 {    
@@ -96,7 +96,7 @@ public class MovieDatabase
       
         if (! isDeleted)
         {
-            System.out.println(" No matched movies are deleted."); 
+            System.out.println(" No matched tickets are deleted."); 
         }
     }
 
@@ -118,7 +118,7 @@ public class MovieDatabase
       
         if (! isDeleted)
         {
-            System.out.println(" No matched movies are deleted."); 
+            System.out.println(" No matched tickets are deleted."); 
         }
     }
     

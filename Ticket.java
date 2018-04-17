@@ -12,6 +12,8 @@ public class Ticket extends User
     private String userName;
     private String password;
     private String seatNumber;
+    private String buyerEmail;
+    private String buyerSuburb;
 
     /**
      * Constructor for objects of class User
@@ -23,15 +25,19 @@ public class Ticket extends User
         this.userName = "";
         this.password = "";
         this.seatNumber = "";
+        this.buyerEmail = "";
+        this.buyerSuburb = "";
     }
     
-    public Ticket(String name, String userName, String password, String seatNumber)
+    public Ticket(String name, String userName, String password, String seatNumber, String buyerEmail, String buyerSuburb)
     {
         // initialise instance variables
         this.name = name;
         this.userName = userName;
         this.password = password;
         this.seatNumber = seatNumber;
+        this.buyerEmail = buyerEmail;
+        this.buyerSuburb = buyerSuburb;
     }
 
     public void setUserName(String name)
@@ -57,6 +63,18 @@ public class Ticket extends User
         // setter of seatNumber
         this.seatNumber = seatNumber;
     }
+
+    public void setBuyerEmail(String buyerEmail)
+    {
+        // setter of buyerEmail
+        buyerEmail = buyerEmail;
+    }    
+
+    public void setbuyerSuburb(String buyerSuburb)
+    {
+        // setter of seatNumber
+        this.buyerSuburb = buyerSuburb;
+    }    
     
     public String getUserName()
     {
@@ -81,6 +99,18 @@ public class Ticket extends User
         //getter of seat number
         return this.seatNumber;
     }
+
+    public String getBuyerEmail()
+    {
+        //getter of buyer's Email
+        return this.buyerEmail;
+    }    
+
+    public String getBuyerSuburb()
+    {
+        //getter of buyer's Suburb
+        return this.buyerSuburb;
+    }    
     
     public void display(){
         
@@ -88,5 +118,7 @@ public class Ticket extends User
         System.out.println("UserName:"+this.userName);
         System.out.println("Password:"+this.password);
         System.out.println("SeatNumber:"+this.seatNumber);
+        System.out.println("BuyerEmail:"+this.buyerEmail);
+        System.out.println("BuyerSuburb:"+this.buyerSuburb);
     }
 }
